@@ -17,17 +17,18 @@ Composer will create a new directory called MY_PROJECT containing a ```docroot``
 
 Let this handy table be your guide:
 
-| Task                                            | Drush                                         | Composer                                          |
-|-------------------------------------------------|-----------------------------------------------|---------------------------------------------------|
-| Installing a contrib project (latest version)   | ```drush pm-download PROJECT```               | ```composer require drupal/PROJECT:8.*```         |
-| Installing a contrib project (specific version) | ```drush pm-download PROJECT-8.x-1.0-beta3``` | ```composer require drupal/PROJECT:8.1.0-beta3``` |
-| Updating all contrib projects and Drupal core   | ```drush pm-update```                         | ```composer update```                             |
-| Updating a single contrib project               | ```drush pm-update PROJECT```                 | ```composer update drupal/PROJECT```              |
-| Updating Drupal core                            | ```drush pm-update drupal```                  | ```composer update drupal/core```                 |
+| Task                                                       | Drush                                         | Composer                                        |
+|------------------------------------------------------------|-----------------------------------------------|-------------------------------------------------|
+| Installing a contrib project (latest version)              | ```drush pm-download PROJECT```               | ```composer require drupal/PROJECT```           |
+| Installing a contrib project (specific version)            | ```drush pm-download PROJECT-8.x-1.0-beta3``` | ```composer require drupal/PROJECT:1.0-beta3``` |
+| Installing a contrib project (latest non-breaking version) | Not Possible                                  | ```composer require drupal/PROJECT:^1.0```      |
+| Updating all contrib projects and Drupal core              | ```drush pm-update```                         | ```composer update```                           |
+| Updating a single contrib project                          | ```drush pm-update PROJECT```                 | ```composer update drupal/PROJECT```            |
+| Updating Drupal core                                       | ```drush pm-update drupal```                  | ```composer update drupal/core```               |
 
 Not too tricky, eh?
 
-The magic is that Composer, unlike Drush, is a *dependency manager*. If module ```foo-8.x-1.0``` depends on ```baz-8.x-3.2```, Composer will not let you update baz to ```8.x-3.3``` (or downgrade it to ```8.x-3.1```, for that matter). Drush has no concept of dependency management. If you've ever accidentally hosed a site because of dependency issues like this, you've probably already realized how valuable Composer can be.
+The magic is that Composer, unlike Drush, is a *dependency manager*. If module ```foo-1.0``` depends on ```baz-3.2```, Composer will not let you update baz to ```3.3``` (or downgrade it to ```3.1```, for that matter). Drush has no concept of dependency management. If you've ever accidentally hosed a site because of dependency issues like this, you've probably already realized how valuable Composer can be.
 
 But to be clear: **you still need Drush**. Tasks such as database updates (```drush updatedb```) are still firmly in Drush's province, and it's awesome at that stuff. This installer will install a copy of Drush (local to the project) in the ```bin``` directory.
 
