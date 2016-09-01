@@ -53,6 +53,8 @@ install:
   # Update codebase to head and run db updates.
   - if [ $VERSION = "HEAD" ]; then cd ..; fi;
   - if [ $version = "HEAD" ]; then rm -rf docroot/modules/contrib; fi;
+  - if [ $version = "HEAD" ]; then rm composer.lock; fi;
+  - if [ $version = "HEAD" ]; then composer clear-cache; fi;
   - if [ $VERSION = "HEAD" ]; then composer require drupal/lightning:dev-8.x-1.x --no-update; fi;
   - if [ $VERSION = "HEAD" ]; then composer update; fi;
   - if [ $VERSION = "HEAD" ]; then cd docroot; fi;
